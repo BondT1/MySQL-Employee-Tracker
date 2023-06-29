@@ -16,3 +16,48 @@ const MainQuestions = [
     },
 ]
 
+const AddDepartmentQs = [
+    {
+        type: 'input',
+        name: 'department_name',
+        message: 'What is the name of the New Department?'
+    },
+]
+
+const AddRoleQs = [
+    {
+        type: 'list',
+        name: 'role_title',
+        message: 'Enter the new role title...'
+    },
+
+    {
+        type: 'number', 
+        name: 'salary',
+        message: 'Enter the salary of the new role (numeric input)...',
+    }, 
+    {
+        type: 'list',
+        name: 'department_id',
+        message: 'In which department is the role in?',
+        choices: [
+        ],
+    },
+]
+
+const AddEmployeeQs = [
+    {
+        type: 'input',
+        name:'first_name',
+        message: 'What is the first name of the employee?'
+    },
+    {
+        type: 'input',
+        name: 'last_name',
+        message: 'What is the last name of the employee?'       
+    },
+    {
+        type: 'input',
+        
+    }
+]
