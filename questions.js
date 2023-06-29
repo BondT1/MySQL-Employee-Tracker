@@ -57,7 +57,36 @@ const AddEmployeeQs = [
         message: 'What is the last name of the employee?'       
     },
     {
-        type: 'input',
-        
-    }
+        type: 'list',
+        name: 'role_id',
+        message: 'What is the employee\'s role?',
+        choices: [
+        ],
+    },
+    {
+        type: 'list',
+        name: 'manager',
+        message: 'Who is the employee\'s manager?',
+        choices: [
+        ],
+    },
 ]
+
+const UpdateEmployeeRoleQs = [
+    {
+        type: 'list',
+        name: 'employee_id',
+        message: 'Select the employee you want to update...',
+        choices: [
+        ],
+    },
+    {
+        type: 'list',
+        name: 'role_id', 
+        message: 'What is the employee\'s new role?',
+        choices: [         
+        ],
+    },
+]
+
+module.exports = { MainQuestions, AddDepartmentQs, AddEmployeeQs, AddRoleQs, UpdateEmployeeRoleQs};
