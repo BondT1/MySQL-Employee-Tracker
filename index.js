@@ -14,7 +14,7 @@ database.connect();
 const startMenuQuestions = () => {
 
     inquirer
-        .createPromptModule(MainQuestions)
+        .prompt(MainQuestions)
         .then((response) => {
             switch (response.option) {
                 case 'view_departments':
@@ -66,7 +66,7 @@ const view_employees = () => {
 
 const add_department = () => {
     inquirer
-        .createPromptModule(AddDepartmentQs)
+        .prompt(AddDepartmentQs)
         .then((response) => {
             database.addDepartment(response).then((results) => {
                 console.log('.\n', results, '\n');
@@ -74,6 +74,29 @@ const add_department = () => {
             });
         })
 }
+
+const add_role = () => {
+    database.getDepartments(). then((results) => {
+        const departmentQ = AddRoleQs[2];
+        results.forEach((department) => {
+            departmentQ.choices.push({
+                value: department.id,
+                name: department.name
+            });
+        });
+
+    inquirer 
+        .prompt(AddRoleQs)
+        .then((response) => {
+            database.addRole(response).then((results) => {
+                console.log('\n', results, '\n');
+                startMenuQuestions();
+            });
+        })
+    });
+}
+
+
 
 
 
