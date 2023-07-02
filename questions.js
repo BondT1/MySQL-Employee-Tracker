@@ -27,7 +27,7 @@ const AddDepartmentQs = [
 const AddRoleQs = [
     {
         type: 'list',
-        name: 'role_title',
+        name: 'title',
         message: 'Enter the new role title...'
     },
 

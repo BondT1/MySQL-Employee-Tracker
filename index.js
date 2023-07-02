@@ -69,7 +69,7 @@ const add_department = () => {
         .prompt(AddDepartmentQs)
         .then((response) => {
             database.addDepartment(response).then((results) => {
-                console.log('.\n', results, '\n');
+                console.log('\n', results, '\n');
                 startMenuQuestions();
             });
         })
@@ -93,6 +93,44 @@ const add_role = () => {
                 startMenuQuestions();
             });
         })
+    });
+}
+
+const add_employee = () => {
+    database.getRoles().then((results) => {
+        const roleQ = AddEmployeeQs[2];
+        results.ForEach((role) => {
+            const role_summary = `${role.title} (${role.department_name}: ${role.salary})`;
+            roleQ.choices.push({
+                value: role_id,
+                name: role_summary
+            });
+        });
+
+        database.getEmployees().then((results) => {
+            const managerQ = AddEmployeeQs[3];
+            results.forEach((employee) => {
+                managerQ.choices.push({
+                    value: employee.id,
+                    name: employee.name
+
+                });
+            });
+
+            managerQ.choices.push({
+                value: null,
+                name: 'None'
+            });
+
+            inquirer 
+                .prompt(AddEmployeeQs)
+                .then((response) => {
+                    database.addEmployee(response).then((results) => {
+                        console.log('\n', results, '\n');
+                        startMenuQuestions();
+                    });
+                })
+        });
     });
 }
 
