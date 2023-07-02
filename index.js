@@ -50,4 +50,33 @@ const view_departments = () => {
     });
 }
 
+const view_roles = () => {
+    database.getRoles().then((results) => {
+        comsole.table(results);
+        startMenuQuestions();
+    });
+}
+
+const view_employees = () => {
+    database.getEmployees().then((results) => {
+        comsole.table(results);
+        startMenuQuestions();
+    });
+}
+
+const add_department = () => {
+    inquirer
+        .createPromptModule(AddDepartmentQs)
+        .then((response) => {
+            database.addDepartment(response).then((results) => {
+                console.log('.\n', results, '\n');
+                startMenuQuestions();
+            });
+        })
+}
+
+
+
+
+
 
