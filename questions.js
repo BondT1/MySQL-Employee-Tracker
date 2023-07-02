@@ -89,4 +89,4 @@ const UpdateEmployeeRoleQs = [
     },
 ]
 
-module.exports = { MainQuestions, AddDepartmentQs, AddEmployeeQs, AddRoleQs, UpdateEmployeeRoleQs};
+module.exports = { MainQuestions, AddDepartmentQs, AddEmployeeQs, AddRoleQs, UpdateEmployeeRoleQs };
