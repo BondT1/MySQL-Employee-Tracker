@@ -61,9 +61,26 @@ class EmployeeDatabase extends Database {
                 resolve(`Role ${role.title} added`);
             });
         });
-
-        
     }
+
+    addRole(role) {
+        const roleData = {
+            title: role.title,
+            salary: role.salary,
+            department_id: role.department_id
+        };
+
+        return new Promise((resolve, reject) => {
+            this.db.query('INSERT INTO role SET ?', roleData, (err, results) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(`Role ${role.title} added`);
+            });
+        });  
+    }
+
+    
 
 
 }
