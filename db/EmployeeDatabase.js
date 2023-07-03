@@ -52,5 +52,18 @@ class EmployeeDatabase extends Database {
         });
     }
 
-    
+    addDepartment(department) {
+        return new Promise((resolve, reject) => {
+            this.db.query('INSERT INTO department SET ?', {name: department.department_name }, (err, results) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(`Role ${role.title} added`);
+            });
+        });
+
+        
+    }
+
+
 }
