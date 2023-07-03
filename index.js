@@ -2,14 +2,14 @@ const inquirer = require('inquirer');
 const { MainQuestions, AddDepartmentQs, AddEmployeeQs, AddRoleQs, UpdateEmployeeRoleQs } = require('./questions.js');
 const EmployeeDatabase = require('./db/EmployeeDatabase.js');
 
-const database = new EmployeeDatabase({
+const db = new EmployeeDatabase({
     host: 'localhost',
     user: 'root',
     password: 'SinnersNeverSleep',
     database: 'employee_db'
 });
 
-database.connect();
+db.connect();
 
 const startMenuQuestions = () => {
 
@@ -44,21 +44,21 @@ const startMenuQuestions = () => {
 }
 
 const view_departments = () => {
-    database.getDepartments().then((results) => {
+    db.getDepartments().then((results) => {
         console.table(results);
         startMenuQuestions();
     });
 }
 
 const view_roles = () => {
-    database.getRoles().then((results) => {
+    db.getRoles().then((results) => {
         comsole.table(results);
         startMenuQuestions();
     });
 }
 
 const view_employees = () => {
-    database.getEmployees().then((results) => {
+    db.getEmployees().then((results) => {
         comsole.table(results);
         startMenuQuestions();
     });
@@ -68,7 +68,7 @@ const add_department = () => {
     inquirer
         .prompt(AddDepartmentQs)
         .then((response) => {
-            database.addDepartment(response).then((results) => {
+            db.addDepartment(response).then((results) => {
                 console.log('\n', results, '\n');
                 startMenuQuestions();
             });
@@ -76,7 +76,7 @@ const add_department = () => {
 }
 
 const add_role = () => {
-    database.getDepartments(). then((results) => {
+    db.getDepartments(). then((results) => {
         const departmentQ = AddRoleQs[2];
         results.forEach((department) => {
             departmentQ.choices.push({
@@ -88,7 +88,7 @@ const add_role = () => {
     inquirer 
         .prompt(AddRoleQs)
         .then((response) => {
-            database.addRole(response).then((results) => {
+            db.addRole(response).then((results) => {
                 console.log('\n', results, '\n');
                 startMenuQuestions();
             });
@@ -97,7 +97,7 @@ const add_role = () => {
 }
 
 const add_employee = () => {
-    database.getRoles().then((results) => {
+    db.getRoles().then((results) => {
         const roleQ = AddEmployeeQs[2];
         results.ForEach((role) => {
             const role_summary = `${role.title} (${role.department_name}: ${role.salary})`;
@@ -107,7 +107,7 @@ const add_employee = () => {
             });
         });
 
-        database.getEmployees().then((results) => {
+        db.getEmployees().then((results) => {
             const managerQ = AddEmployeeQs[3];
             results.forEach((employee) => {
                 managerQ.choices.push({
@@ -125,7 +125,7 @@ const add_employee = () => {
             inquirer 
                 .prompt(AddEmployeeQs)
                 .then((response) => {
-                    database.addEmployee(response).then((results) => {
+                    db.addEmployee(response).then((results) => {
                         console.log('\n', results, '\n');
                         startMenuQuestions();
                     });
@@ -135,7 +135,7 @@ const add_employee = () => {
 }
 
 const update_role = () => {
-    database.getEmployees().then((results) => {
+    db.getEmployees().then((results) => {
         const employeeQ = UpdateEmployeeRoleQs[0];
         results.forEach((employee) => {
             employeeQ.choices.push({
@@ -145,7 +145,7 @@ const update_role = () => {
             });
         });
 
-        database.getRoles().then((results) => {
+        db.getRoles().then((results) => {
             const roleQ = UpdateEmployeeRoleQs[1];
             results.forEach((role) => {
                 roleQ.choices.push({
@@ -157,7 +157,7 @@ const update_role = () => {
             inquirer
                 .prompt(UpdateEmployeeRoleQs)
                 .then((response) => {
-                    database.updateEmployeeRole(response).then((results) => {
+                    db.updateEmployeeRole(response).then((results) => {
                         console.log('\n', results, '\n');
                         startMenuQuestions();
                     });
