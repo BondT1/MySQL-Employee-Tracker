@@ -95,10 +95,19 @@ class EmployeeDatabase extends Database {
                 }
                 resolve(`${employee.first_name} ${employee.last_name} added`);
             });
-        });
-
-        
+        });   
     }
 
-
+    updateEmployeeRole(employee) {
+        return new Promise ((resolve, reject) => {
+            this.db.query('UPDATE employee SET role_id=?', [employee.role_id, employee.employee_id], (err, results) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(results);
+            });
+        });
+    }
 }
+
+module.exports = EmployeeDatabase;
