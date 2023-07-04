@@ -35,7 +35,7 @@ You will be met with a list of options:
 - Select 'add an employee' to be prompted to enter an employee’s first name, last name, role, and manager. That employee is then added to the database.
 - Select 'update an employee role' to be prompted to select an employee to update and their new role and this information is updated in the database.
 
-A Walkthrough video of the application in progress -
+A Walkthrough video of the application in progress - https://drive.google.com/file/d/1-ENbsvdNH9c37EQv4ocP-RA9b0xmdypL/view
 
 ## Credits
 
