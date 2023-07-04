@@ -15,8 +15,6 @@ The fetaures used throughout this project are:
 - Seeding 
 - MySQL Workbench
 
-The 
-
 ## Installation
 
 To use this application, type 'npm install mysql2 --save' and 'npm install inquirer' in your terminal to install the necessary programs. You also need to install the MySQL package and MySQL Workbench package from the MySQL website.
