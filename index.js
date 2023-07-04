@@ -52,14 +52,14 @@ const view_departments = () => {
 
 const view_roles = () => {
     db.getRoles().then((results) => {
-        comsole.table(results);
+        console.table(results);
         startMenuQuestions();
     });
 }
 
 const view_employees = () => {
     db.getEmployees().then((results) => {
-        comsole.table(results);
+        console.table(results);
         startMenuQuestions();
     });
 }
@@ -76,7 +76,7 @@ const add_department = () => {
 }
 
 const add_role = () => {
-    db.getDepartments(). then((results) => {
+    db.getDepartments().then((results) => {
         const departmentQ = AddRoleQs[2];
         results.forEach((department) => {
             departmentQ.choices.push({
@@ -99,10 +99,10 @@ const add_role = () => {
 const add_employee = () => {
     db.getRoles().then((results) => {
         const roleQ = AddEmployeeQs[2];
-        results.ForEach((role) => {
+        results.forEach((role) => {
             const role_summary = `${role.title} (${role.department_name}: ${role.salary})`;
             roleQ.choices.push({
-                value: role_id,
+                value: role.id,
                 name: role_summary
             });
         });

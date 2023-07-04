@@ -35,8 +35,8 @@ class EmployeeDatabase extends Database {
                     CONCAT(employee.first_name, ' ', employee.last_name) as name,
                     role.title as role_title,
                     role.salary as role_salary,
-                    dpeartment.name as department_name,
-                    if(CONCAT(manager.first_name, ' ', manager.last_name) IS NULL , '', CONCAT(manager.first_name, ' ', manager.last_name))
+                    department.name as department_name,
+                    IF(CONCAT(manager.first_name, ' ', manager.last_name) IS NULL , '', CONCAT(manager.first_name, ' ', manager.last_name)) as manager_name
                     
                 FROM employee
                     INNER JOIN role ON employee.role_id = role.id
@@ -58,7 +58,7 @@ class EmployeeDatabase extends Database {
                 if (err) {
                     reject(err);
                 }
-                resolve(`Role ${role.title} added`);
+                resolve(`Department ${department.department_name} added`);
             });
         });
     }
@@ -88,7 +88,7 @@ class EmployeeDatabase extends Database {
             manager_id: employee.manager_id,
         };
 
-        return new Promise (( resolve, reject) => {
+        return new Promise ((resolve, reject) => {
             this.db.query('INSERT INTO employee SET ?', employeeData, (err, results) => {
                 if (err) {
                     reject(err);
@@ -100,7 +100,7 @@ class EmployeeDatabase extends Database {
 
     updateEmployeeRole(employee) {
         return new Promise ((resolve, reject) => {
-            this.db.query('UPDATE employee SET role_id=?', [employee.role_id, employee.employee_id], (err, results) => {
+            this.db.query('UPDATE employee SET role_id=? WHERE id=?', [employee.role_id, employee.employee_id], (err, results) => {
                 if (err) {
                     reject(err);
                 }
