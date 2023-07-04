@@ -153,7 +153,7 @@ const update_role = () => {
                     name: role.title
                 });
             });
-
+        
             inquirer
                 .prompt(UpdateEmployeeRoleQs)
                 .then((response) => {
